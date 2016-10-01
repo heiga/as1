@@ -43,6 +43,7 @@ public class LonelyTwitterActivity extends Activity {
 
 	public void addHabit(View view) {
 		Intent intent = new Intent(this, AddHabit.class);
+		startActivity(intent);
 
 	}
 

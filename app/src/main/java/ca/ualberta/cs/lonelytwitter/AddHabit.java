@@ -1,9 +1,10 @@
 package ca.ualberta.cs.lonelytwitter;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
-public class AddHabit extends ActionBarActivity {
+public class AddHabit extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
