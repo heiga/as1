@@ -6,5 +6,32 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></RelativeLayout>
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="@android:dimen/thumbnail_width"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:text="All Habits"
+            android:id="@+id/AllHabitsbutton"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="@android:dimen/thumbnail_width"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:text="TODO Today"
+            android:id="@+id/TODObutton"
+            android:layout_above="@+id/AllHabitsbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp" />
+
+        <Button
+            android:layout_width="@android:dimen/thumbnail_width"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:text="Add Habit"
+            android:id="@+id/AddHabitbutton"
+            android:layout_below="@+id/AllHabitsbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp" />
+    </RelativeLayout>
 </LinearLayout>
