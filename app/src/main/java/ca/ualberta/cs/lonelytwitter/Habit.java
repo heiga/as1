@@ -13,7 +13,6 @@ public class Habit {
     private Date habitDate;
     private ArrayList<Date> completedDates;
     private List<String> daysOfWeek;
-    private Integer habitCount;
 
     public Habit(String habitName, String habitNotes,
                       Date dateOfHabit, List<String> weekDays) {
@@ -21,21 +20,38 @@ public class Habit {
         this.notes = habitNotes;
         this.habitDate = dateOfHabit;
         this.daysOfWeek = weekDays;
-        habitCount = 0;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public Date returnCreationDate() {
+        return this.habitDate;
+    }
+
+    public ArrayList<Date> returnCompletedDates() {
+        return this.completedDates;
+    }
+
+    public List<String> returnDaysOfWeek() {
+        return this.daysOfWeek;
     }
 
     public void habitCompletion(Date completionDate) {
         completedDates.add(completionDate);
-        habitCount += 1;
     }
 
     public void habitRemoval(Date completionDate) {
         completedDates.remove(completionDate);
-        habitCount -= 1;
     }
 
-    public Integer viewHabitCount() {
-        return habitCount;
+    public int viewHabitCount() {
+        return completedDates.size();
     }
 
 

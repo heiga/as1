@@ -5,5 +5,8 @@
     <string name="app_name">Habit Tracker</string>
     <string name="save">Save</string>
     <string name="clear">Clear</string>
-    
+    <string name="name">Name</string>
+    <string name="habit_name">Habit Name</string>
+    <string name="describe_your_habit">describe your habit</string>
+
 </resources>

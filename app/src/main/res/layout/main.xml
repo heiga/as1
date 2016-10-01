@@ -32,6 +32,7 @@
             android:id="@+id/AddHabitbutton"
             android:layout_below="@+id/AllHabitsbutton"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp" />
+            android:layout_marginTop="60dp"
+            android:onClick="addHabit" />
     </RelativeLayout>
 </LinearLayout>

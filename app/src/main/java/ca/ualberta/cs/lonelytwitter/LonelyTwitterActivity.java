@@ -13,6 +13,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,12 @@ public class LonelyTwitterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 	}
+
+	public void addHabit(View view) {
+		Intent intent = new Intent(this, AddHabit.class);
+
+	}
+
 		/*
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
