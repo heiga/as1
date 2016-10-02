@@ -7,7 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ca.ualberta.cs.lonelytwitter.AddHabit">
+    tools:context="ca.ualberta.cs.lonelytwitter.AddHabit"
+    android:clickable="false"
+    android:contentDescription="Mon">
 
     <TextView
         android:layout_width="@dimen/abc_action_bar_stacked_tab_max_width"
@@ -37,7 +39,7 @@
         android:layout_below="@+id/title"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/habitName"
-        android:layout_alignStart="@+id/habitNotesTitle" />
+        android:layout_alignStart="@+id/dateDisplay" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,9 +47,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Habit Description"
         android:id="@+id/habitNotesTitle"
-        android:layout_below="@+id/editHabitName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_below="@+id/habitName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -64,16 +66,112 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Habit Date"
         android:id="@+id/habitDateTitle"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/editHabitNotes"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
+        android:layout_alignParentStart="true" />
 
-    <Spinner
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/yearspinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/datedisplay"
+        android:id="@+id/dateDisplay"
         android:layout_alignTop="@+id/habitDateTitle"
-        android:layout_alignStart="@+id/title"
-        android:spinnerMode="dropdown" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Date"
+        android:id="@+id/setDate"
+        android:layout_alignTop="@+id/dateDisplay"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Days of the Week"
+        android:id="@+id/daysOfWeekTitle"
+        android:layout_below="@+id/setDate"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton"
+        android:layout_below="@+id/daysOfWeekTitle"
+        android:layout_alignParentStart="true"
+        android:textOff="M"
+        android:textOn="M"/>
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton2"
+        android:layout_alignTop="@+id/toggleButton"
+        android:layout_toEndOf="@+id/toggleButton"
+        android:textOff="T"
+        android:textOn="T"/>
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton3"
+        android:layout_alignTop="@+id/toggleButton2"
+        android:layout_toEndOf="@+id/toggleButton2"
+        android:textOff="W"
+        android:textOn="W"/>
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton4"
+        android:layout_alignTop="@+id/toggleButton3"
+        android:layout_toEndOf="@+id/toggleButton3"
+        android:textOff="R"
+        android:textOn="R"/>
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton5"
+        android:layout_alignTop="@+id/toggleButton4"
+        android:layout_toEndOf="@+id/toggleButton4"
+        android:textOff="F"
+        android:textOn="F"/>
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton6"
+        android:layout_alignTop="@+id/toggleButton5"
+        android:layout_toEndOf="@+id/toggleButton5"
+        android:textOff="S"
+        android:textOn="S"/>
+
+    <ToggleButton
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton7"
+        android:layout_alignTop="@+id/toggleButton6"
+        android:layout_toEndOf="@+id/toggleButton6"
+        android:textOff="U"
+        android:textOn="U"/>
+
+    <Button
+        android:layout_width="@android:dimen/thumbnail_width"
+        android:layout_height="@android:dimen/thumbnail_height"
+        android:text="@string/add_habit"
+        android:id="@+id/addHabitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
