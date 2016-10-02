@@ -6,9 +6,14 @@ import android.app.Dialog;
 import android.view.Menu;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Type;
 import java.util.Calendar;
 
 import java.io.BufferedReader;
@@ -20,6 +25,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import ca.ualberta.cs.lonelytwitter.Habit;
 import ca.ualberta.cs.lonelytwitter.HabitList;
 
@@ -33,7 +40,13 @@ public class AddHabit extends Activity {
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+
     private HabitList habitList = new HabitList();
+    private ArrayAdapter<Habit> adapter;
+
+    private EditText habitName;
+    private EditText habitNotes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +59,30 @@ public class AddHabit extends Activity {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
+
+        Button addHabitButton = (Button) findViewById(R.id.addHabitButton);
+        habitName = (EditText) findViewById(R.id.editHabitName);
+
+        addHabitButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                /*
+                String text = bodyText.getText().toString();
+                Tweet newTweet = new NormalTweet(text);
+                tweetList.add(newTweet);
+                adapter.notifyDataSetChanged();
+                */
+                saveInFile();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        loadFromFile();
     }
 
     @SuppressWarnings("deprecation")
@@ -89,7 +126,8 @@ public class AddHabit extends Activity {
             Gson gson = new Gson();
             //Code taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             //Semptember 22, 2016
-            habitList = gson.fromJson();
+            Type listType = new TypeToken<HabitList>(){}.getType();
+            habitList = gson.fromJson(in, listType);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -99,5 +137,22 @@ public class AddHabit extends Activity {
             throw new RuntimeException();
         }
 
+    }
+
+    private void saveInFile() {
+        try {
+
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(habitList, writer);
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
     }
 }
