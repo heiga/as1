@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/datedisplay"
+        android:text="@string/dateDisplayed"
         android:id="@+id/dateDisplay"
         android:layout_alignTop="@+id/habitDateTitle"
         android:layout_centerHorizontal="true" />
@@ -85,7 +85,8 @@
         android:text="Set Date"
         android:id="@+id/setDate"
         android:layout_alignTop="@+id/dateDisplay"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="setDate" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -8,7 +8,7 @@
     <string name="name">Name</string>
     <string name="habit_name">Habit Name</string>
     <string name="describe_your_habit">describe your habit</string>
-    <string name="datedisplay">dateDisplay</string>
+    <string name="dateDisplayed"></string>
     <string name="add_habit">Add Habit</string>
 
 </resources>
