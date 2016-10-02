@@ -12,8 +12,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.io.BufferedReader;
@@ -23,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Date;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,7 +49,16 @@ public class AddHabit extends Activity {
 
     private EditText habitName;
     private EditText habitNotes;
+    private Date habitDate;
 
+    ToggleButton Mon = (ToggleButton) findViewById(R.id.toggleButton);
+    ToggleButton Tue = (ToggleButton) findViewById(R.id.toggleButton2);
+    ToggleButton Wed = (ToggleButton) findViewById(R.id.toggleButton3);
+    ToggleButton Thu = (ToggleButton) findViewById(R.id.toggleButton4);
+    ToggleButton Fri = (ToggleButton) findViewById(R.id.toggleButton5);
+    ToggleButton Sat = (ToggleButton) findViewById(R.id.toggleButton6);
+    ToggleButton Sun = (ToggleButton) findViewById(R.id.toggleButton7);
+    private ArrayList<String> daysOfWeek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +74,7 @@ public class AddHabit extends Activity {
 
         Button addHabitButton = (Button) findViewById(R.id.addHabitButton);
         habitName = (EditText) findViewById(R.id.editHabitName);
+        habitNotes = (EditText) findViewById(R.id.editHabitNotes);
 
         addHabitButton.setOnClickListener(new View.OnClickListener() {
 
@@ -73,6 +86,9 @@ public class AddHabit extends Activity {
                 tweetList.add(newTweet);
                 adapter.notifyDataSetChanged();
                 */
+                habitDate = calendar.getTime();
+                daysOfWeek = getDaysOfWeek();
+
                 saveInFile();
             }
         });
@@ -154,5 +170,31 @@ public class AddHabit extends Activity {
             // TODO Auto-generated catch block
             throw new RuntimeException();
         }
+    }
+
+    private ArrayList<String> getDaysOfWeek() {
+        ArrayList<String> daysOfWeek = new ArrayList<String>();
+        if(Mon.isChecked()){
+            daysOfWeek.add("M");
+        }
+        if(Tue.isChecked()){
+            daysOfWeek.add("T");
+        }
+        if(Wed.isChecked()){
+            daysOfWeek.add("W");
+        }
+        if(Thu.isChecked()){
+            daysOfWeek.add("R");
+        }
+        if(Fri.isChecked()){
+            daysOfWeek.add("F");
+        }
+        if(Sat.isChecked()){
+            daysOfWeek.add("S");
+        }
+        if(Sun.isChecked()){
+            daysOfWeek.add("U");
+        }
+        return daysOfWeek;
     }
 }
