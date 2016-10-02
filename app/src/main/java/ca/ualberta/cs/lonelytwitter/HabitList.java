@@ -14,7 +14,7 @@ public class HabitList {
     }
 
     public void addHabit(String habitName, String habitNotes,
-                         Date dateOfHabit, List<String> weekDays) {
+                         Date dateOfHabit, ArrayList<String> weekDays) {
         Habit habitToAdd = new Habit(habitName, habitNotes, dateOfHabit, weekDays);
         habitList.add(habitToAdd);
     }

@@ -8,18 +8,20 @@ import java.util.List;
  * Created by phillip2 on 9/28/16.
  */
 public class Habit {
+
     private String name;
     private String notes;
     private Date habitDate;
     private ArrayList<Date> completedDates;
-    private List<String> daysOfWeek;
+    private ArrayList<String> daysOfWeek;
 
     public Habit(String habitName, String habitNotes,
-                      Date dateOfHabit, List<String> weekDays) {
+                      Date dateOfHabit, ArrayList<String> weekDays) {
         this.name = habitName;
         this.notes = habitNotes;
         this.habitDate = dateOfHabit;
         this.daysOfWeek = weekDays;
+        this.completedDates = new ArrayList<Date>();
     }
 
     public String getName() {
@@ -30,15 +32,15 @@ public class Habit {
         return this.notes;
     }
 
-    public Date returnCreationDate() {
+    public Date getCreationDate() {
         return this.habitDate;
     }
 
-    public ArrayList<Date> returnCompletedDates() {
+    public ArrayList<Date> getCompletedDates() {
         return this.completedDates;
     }
 
-    public List<String> returnDaysOfWeek() {
+    public ArrayList<String> getDaysOfWeek() {
         return this.daysOfWeek;
     }
 
@@ -50,7 +52,7 @@ public class Habit {
         completedDates.remove(completionDate);
     }
 
-    public int viewHabitCount() {
+    public int getHabitCount() {
         return completedDates.size();
     }
 
