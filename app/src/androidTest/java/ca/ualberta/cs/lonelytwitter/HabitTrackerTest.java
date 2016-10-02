@@ -5,7 +5,6 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Phillip Hoang on 2016-10-01.
@@ -62,11 +61,14 @@ public class HabitTrackerTest extends ActivityInstrumentationTestCase2 {
         days.add("M");
         days.add("T");
         Habit habit = new Habit("some habit", "do some stuff", date, days);
+        assertEquals(habit.getHabitCount(), 0);
         habit.habitCompletion(date2);
         assertEquals(habit.getHabitCount(), 1);
         habit.habitCompletion(date3);
         assertEquals(habit.getHabitCount(), 2);
         habit.habitRemoval(date3);
-        assertEquals(habit.getHabitCount(), 2);
+        assertEquals(habit.getHabitCount(), 1);
+        habit.habitRemoval(date2);
+        assertEquals(habit.getHabitCount(), 0);
     }
 }

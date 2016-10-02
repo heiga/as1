@@ -11,6 +11,7 @@ public class HabitList {
     private ArrayList<Habit> habitList;
 
     public HabitList(){
+        habitList = new ArrayList<Habit>();
     }
 
     public void addHabit(String habitName, String habitNotes,
