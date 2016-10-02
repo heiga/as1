@@ -11,15 +11,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Calendar;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
+import com.google.gson.Gson;
+import ca.ualberta.cs.lonelytwitter.Habit;
+import ca.ualberta.cs.lonelytwitter.HabitList;
+
 // All DatePicker code from http://www.tutorialspoint.com/android/android_datepicker_control.htm
 // Usage from this site is freely allowed for educational purposes
 
 public class AddHabit extends Activity {
 
+    private static final String FILENAME = "file.sav";
     private DatePicker datePicker;
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+    private HabitList habitList = new HabitList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +53,6 @@ public class AddHabit extends Activity {
         showDialog(999);
         Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -63,5 +76,28 @@ public class AddHabit extends Activity {
     private void showDate(int year, int month, int day) {
         dateView.setText(new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year));
+    }
+
+    public void addHabit() {
+
+    }
+
+    private void loadFromFile() {
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            //Code taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+            //Semptember 22, 2016
+            habitList = gson.fromJson();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
+
     }
 }
