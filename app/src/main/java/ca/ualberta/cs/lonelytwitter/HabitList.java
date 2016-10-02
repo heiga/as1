@@ -20,8 +20,23 @@ public class HabitList {
         habitList.add(habitToAdd);
     }
 
+    public void addHabit(Habit habit) {
+        habitList.add(habit);
+    }
+
     public void deleteHabit(Habit habitToDelete) {
         habitList.remove(habitToDelete);
+    }
+
+    public int getHabitListCount() {
+        return habitList.size();
+    }
+
+    public Habit returnHabit(int index) {
+        if (habitList.size() == 0) {
+            return null;
+        }
+        return habitList.get(index);
     }
 
 }

@@ -26,6 +26,7 @@ public class HabitTrackerTest extends ActivityInstrumentationTestCase2 {
         days.add("M");
         days.add("T");
         Habit habit = new Habit("some habit", "do some stuff", date, days);
+
         assertEquals(habit.getName(),"some habit");
         assertEquals(habit.getNotes(), "do some stuff");
         assertEquals(habit.getCreationDate(), date);
@@ -38,7 +39,9 @@ public class HabitTrackerTest extends ActivityInstrumentationTestCase2 {
         days.add("M");
         days.add("T");
         Habit habit = new Habit("some habit", "do some stuff", date, days);
+
         habit.habitCompletion(date);
+
         assertFalse(habit.getCompletedDates().isEmpty());
     }
 
@@ -48,8 +51,10 @@ public class HabitTrackerTest extends ActivityInstrumentationTestCase2 {
         days.add("M");
         days.add("T");
         Habit habit = new Habit("some habit", "do some stuff", date, days);
+
         habit.habitCompletion(date);
         habit.habitRemoval(date);
+
         assertTrue(habit.getCompletedDates().isEmpty());
     }
 
@@ -61,6 +66,7 @@ public class HabitTrackerTest extends ActivityInstrumentationTestCase2 {
         days.add("M");
         days.add("T");
         Habit habit = new Habit("some habit", "do some stuff", date, days);
+
         assertEquals(habit.getHabitCount(), 0);
         habit.habitCompletion(date2);
         assertEquals(habit.getHabitCount(), 1);
@@ -70,5 +76,42 @@ public class HabitTrackerTest extends ActivityInstrumentationTestCase2 {
         assertEquals(habit.getHabitCount(), 1);
         habit.habitRemoval(date2);
         assertEquals(habit.getHabitCount(), 0);
+    }
+
+    public void testHabitTrackerAdding() {
+        HabitList habitList = new HabitList();
+
+        Date date = new Date();
+        Date date2 = new Date(1111);
+        ArrayList<String> days = new ArrayList<String>();
+        days.add("M");
+        days.add("T");
+        Habit habit = new Habit("some habit", "do some stuff", date, days);
+
+        habitList.addHabit("some other habit", "do some kool stuff", date2, days);
+        assertEquals(habitList.getHabitListCount(), 1);
+
+        habitList.addHabit(habit);
+        assertEquals(habitList.getHabitListCount(), 2);
+    }
+
+    public void testHabitTrackerDeletion() {
+        HabitList habitList = new HabitList();
+
+        Date date = new Date();
+        Date date2 = new Date(1111);
+        ArrayList<String> days = new ArrayList<String>();
+        days.add("M");
+        days.add("T");
+        Habit habit = new Habit("some habit", "do some stuff", date, days);
+
+        habitList.addHabit("some other habit", "do some kool stuff", date2, days);
+        assertEquals(habitList.getHabitListCount(), 1);
+
+        habitList.addHabit(habit);
+        assertEquals(habitList.getHabitListCount(), 2);
+
+        habitList.deleteHabit(habit);
+        assertEquals(habitList.getHabitListCount(), 1);
     }
 }
