@@ -55,9 +55,8 @@ public class EditHabit extends Activity {
 
         lastCompleted = (TextView) findViewById(R.id.lastCompletionDate);
 
-        if(!habit.getCompletedDates().isEmpty()){
-            printChanges();
-        }
+        printChanges();
+
 
         Button deleteHabitButton = (Button) findViewById(R.id.deleteHabitButton);
         deleteHabitButton.setOnClickListener(new View.OnClickListener() {
@@ -94,9 +93,12 @@ public class EditHabit extends Activity {
         super.onResume();
         printChanges();
     }
+
     private void printChanges() {
-        int index = habit.getCompletedDates().size() - 1;
-        lastCompleted.setText(dateToString(habit.getCompletedDates().get(index)));
+        if(habit.getCompletedDates().size() > 0) {
+            int index = habit.getCompletedDates().size() - 1;
+            lastCompleted.setText(dateToString(habit.getCompletedDates().get(index)));
+        }
     }
     private String dateToString(Date date){
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
