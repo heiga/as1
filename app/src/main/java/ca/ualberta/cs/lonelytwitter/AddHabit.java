@@ -111,12 +111,12 @@ public class AddHabit extends Activity {
                 */
                 habitDate = calendar.getTime();
                 daysOfWeek = getDaysOfWeek();
-                habitList.addHabit(habitName.toString(), habitNotes.toString(),
+                habitList.addHabit(habitName.getText().toString(), habitNotes.getText().toString(),
                         habitDate, daysOfWeek);
 
                 Context context = getApplicationContext();
-                CharSequence text = habitList.returnHabit(1);
-                Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+                CharSequence text = habitList.returnHabit(0).getName();
+                Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
                 toast.show();
 
                 saveInFile();
