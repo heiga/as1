@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -36,6 +38,7 @@ public class EditHabit extends Activity {
         Intent intent = getIntent();
         int position = (Integer) intent.getSerializableExtra("habitPosition");
         habit = habitList.returnHabit(position);
+
         TextView title = (TextView) findViewById(R.id.viewHabitName);
         title.setText(habit.getName());
         TextView desc = (TextView) findViewById(R.id.viewHabitNotes);
@@ -44,6 +47,21 @@ public class EditHabit extends Activity {
         date.setText(dateToString(habit.getCreationDate()));
         TextView days = (TextView) findViewById(R.id.viewHabitDays);
         days.setText(daysToString(habit.getDaysOfWeek()));
+
+        Button deleteHabitButton = (Button) findViewById(R.id.deleteHabitButton);
+        deleteHabitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                habitList.deleteHabit(habit);
+                saveInFile();
+                finish();
+            }
+        });
+    }
+
+    public void deleteHabit(View view) {
+        //habitList.deleteHabit(habit);
+        //saveInFile();
+        finish();
     }
 
     private String dateToString(Date date){

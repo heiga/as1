@@ -54,7 +54,6 @@ public class HabitListActivity extends Activity {
             habitCollection.add(habitList.returnHabit(i));
         }
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, habitArray);
-
         ListView listView = (ListView) findViewById(R.id.habitListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new OnItemClickListener() {
