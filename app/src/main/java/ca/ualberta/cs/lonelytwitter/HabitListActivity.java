@@ -42,16 +42,6 @@ public class HabitListActivity extends Activity {
         listView = (ListView) findViewById(R.id.habitListView);
     }
 
-    /*
-    @Override
-    protected void onStart() {
-        super.onStart();
-        habitList = new HabitList();
-        loadFromFile();
-        getList();
-    }
-    */
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -96,23 +86,6 @@ public class HabitListActivity extends Activity {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             //throw new RuntimeException();
-        }
-    }
-
-    private void saveInFile() {
-        try {
-
-            FileOutputStream fos = openFileOutput(FILENAME, 0);
-            OutputStreamWriter writer = new OutputStreamWriter(fos);
-            Gson gson = new Gson();
-            gson.toJson(habitList, writer);
-            writer.flush();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
         }
     }
 }

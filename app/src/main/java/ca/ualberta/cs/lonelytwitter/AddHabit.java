@@ -62,18 +62,8 @@ public class AddHabit extends Activity {
     private ToggleButton Fri;
     private ToggleButton Sat;
     private ToggleButton Sun;
-    /*
-    private ToggleButton Mon = (ToggleButton) findViewById(R.id.toggleButton1);
-    private ToggleButton Tue = (ToggleButton) findViewById(R.id.toggleButton2);
-    private ToggleButton Wed = (ToggleButton) findViewById(R.id.toggleButton3);
-    private ToggleButton Thu = (ToggleButton) findViewById(R.id.toggleButton4);
-    private ToggleButton Fri = (ToggleButton) findViewById(R.id.toggleButton5);
-    private ToggleButton Sat = (ToggleButton) findViewById(R.id.toggleButton6);
-    private ToggleButton Sun = (ToggleButton) findViewById(R.id.toggleButton7);
-    */
 
     private ArrayList<String> daysOfWeek;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +94,7 @@ public class AddHabit extends Activity {
             public void onClick(View v) {
                 loadFromFile();
                 setResult(RESULT_OK);
-                /*
-                String text = bodyText.getText().toString();
-                Tweet newTweet = new NormalTweet(text);
-                tweetList.add(newTweet);
-                adapter.notifyDataSetChanged();
-                */
+
                 habitDate = calendar.getTime();
                 daysOfWeek = getDaysOfWeek();
                 habitList.addHabit(habitName.getText().toString(), habitNotes.getText().toString(),
