@@ -17,7 +17,7 @@
     <string name="viewHabitDays">Habit Days</string>
     <string name="deleteHabitButton">delete habit</string>
     <string name="last_completed_on">last completed on:</string>
-    <string name="last_completion_date">Last Completion Date</string>
+    <string name="last_completion_date">never</string>
     <string name="view_completion_history">View Completion History</string>
     <string name="complete_habit">Complete Habit</string>
 

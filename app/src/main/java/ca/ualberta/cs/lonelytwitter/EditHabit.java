@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class EditHabit extends Activity {
 
@@ -36,9 +40,25 @@ public class EditHabit extends Activity {
         title.setText(habit.getName());
         TextView desc = (TextView) findViewById(R.id.viewHabitNotes);
         desc.setText(habit.getNotes());
+        TextView date = (TextView) findViewById(R.id.viewHabitDate);
+        date.setText(dateToString(habit.getCreationDate()));
+        TextView days = (TextView) findViewById(R.id.viewHabitDays);
+        days.setText(daysToString(habit.getDaysOfWeek()));
     }
 
+    private String dateToString(Date date){
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        return df.format(date);
+    }
 
+    private String daysToString(ArrayList<String> days) {
+        String daysString = "";
+        for (int i = 0; i < days.size(); i++) {
+            daysString = daysString.concat(days.get(i));
+            daysString = daysString.concat(" ");
+        }
+        return daysString;
+    }
 
     private void loadFromFile() {
         try {

@@ -38,12 +38,12 @@ public class HabitListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        habitList = new HabitList();
         loadFromFile();
         getList();
     }
