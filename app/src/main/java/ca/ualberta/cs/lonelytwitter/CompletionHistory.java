@@ -32,7 +32,7 @@ public class CompletionHistory extends Activity {
     private static final String FILENAME = "file.sav";
     private int positionHabit;
     private Habit habit;
-    private HabitList habitList;
+    private HabitList habitList = new HabitList();
     private ArrayAdapter<String> adapter;
     private ListView listView;
     private ArrayList<String> dateArray;
@@ -98,8 +98,9 @@ public class CompletionHistory extends Activity {
             Gson gson = new Gson();
             //Code taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             //Semptember 22, 2016
-            Type listType = new TypeToken<HabitList>(){}.getType();
-            habitList = gson.fromJson(in, listType);
+            //Type listType = new TypeToken<HabitList>(){}.getType();
+            //habitList = gson.fromJson(in, listType);
+            habitList = gson.fromJson(in, habitList.getClass());
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
