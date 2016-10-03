@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Habit Name"
-        android:id="@+id/habitName"
+        android:id="@+id/viewHabitName"
         android:layout_alignBottom="@+id/editHabitName"
         android:layout_alignParentStart="true" />
 
@@ -38,7 +38,7 @@
         android:id="@+id/editHabitName"
         android:layout_below="@+id/title"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/habitName"
+        android:layout_toEndOf="@+id/viewHabitName"
         android:layout_alignStart="@+id/dateDisplay" />
 
     <TextView
@@ -47,7 +47,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Habit Description"
         android:id="@+id/habitNotesTitle"
-        android:layout_below="@+id/habitName"
+        android:layout_below="@+id/viewHabitName"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp" />
 

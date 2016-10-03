@@ -1,8 +1,12 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,6 +32,8 @@ public class HabitListActivity extends Activity {
     private ArrayList<String> habitArray = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
 
+    private ArrayList<Habit> habitCollection = new ArrayList<Habit>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +51,20 @@ public class HabitListActivity extends Activity {
     private void getList() {
         for(int i = 0; i < habitList.getHabitListCount(); i++){
             habitArray.add(habitList.returnHabit(i).getName());
+            habitCollection.add(habitList.returnHabit(i));
         }
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, habitArray);
 
         ListView listView = (ListView) findViewById(R.id.habitListView);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getApplicationContext(), EditHabit.class);
+                intent.putExtra("habitPosition", position);
+            }
+        });
     }
-
-
 
 
     private void loadFromFile() {

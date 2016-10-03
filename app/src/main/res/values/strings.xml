@@ -11,5 +11,14 @@
     <string name="dateDisplayed"></string>
     <string name="add_habit">Add Habit</string>
     <string name="todo_today_coming_soon">TODO Today coming soon</string>
+    <string name="viewHabitName">Habit Name</string>
+    <string name="viewHabitDescription">Habit Description</string>
+    <string name="viewHabitDate">Habit Date</string>
+    <string name="viewHabitDays">Habit Days</string>
+    <string name="deleteHabitButton">delete habit</string>
+    <string name="last_completed_on">last completed on:</string>
+    <string name="last_completion_date">Last Completion Date</string>
+    <string name="view_completion_history">View Completion History</string>
+    <string name="complete_habit">Complete Habit</string>
 
 </resources>

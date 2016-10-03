@@ -26,7 +26,8 @@
         <activity android:name=".AddHabit" />
         <activity android:name=".ActivityList" />
         <activity android:name=".HabitListActivity" />
-        <activity android:name=".TODO_habits"></activity>
+        <activity android:name=".TODO_habits" />
+        <activity android:name=".EditHabit"></activity>
     </application>
 
 </manifest>
