@@ -51,12 +51,10 @@ public class EditHabit extends Activity {
         days.setText(daysToString(habit.getDaysOfWeek()));
 
         completeNumber = (TextView) findViewById(R.id.completedNumber);
-        completeNumber.setText(String.valueOf(habit.getHabitCount()));
 
         lastCompleted = (TextView) findViewById(R.id.lastCompletionDate);
 
         printChanges();
-
 
         Button deleteHabitButton = (Button) findViewById(R.id.deleteHabitButton);
         deleteHabitButton.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +89,7 @@ public class EditHabit extends Activity {
     @Override
     protected void onResume(){
         super.onResume();
+        loadFromFile();
         printChanges();
     }
 
@@ -98,6 +97,7 @@ public class EditHabit extends Activity {
         if(habit.getCompletedDates().size() > 0) {
             int index = habit.getCompletedDates().size() - 1;
             lastCompleted.setText(dateToString(habit.getCompletedDates().get(index)));
+            completeNumber.setText(String.valueOf(habit.getHabitCount()));
         }
     }
     private String dateToString(Date date){

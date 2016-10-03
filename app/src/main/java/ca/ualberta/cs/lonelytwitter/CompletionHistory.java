@@ -14,8 +14,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,10 +47,9 @@ public class CompletionHistory extends Activity {
         habit = habitList.returnHabit(position);
 
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, dateArray);
-
         listView.setAdapter(adapter);
         update();
-        
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -60,11 +61,19 @@ public class CompletionHistory extends Activity {
         });
     }
 
+    /*
+    public void onResume() {
+        super.onResume();
+        loadFromFile();
+        update();
+    } */
+
     private void update() {
         dateArray.clear();
         for(int i = 0; i < habit.getCompletedDates().size(); i++) {
             dateArray.add(dateToString(habit.getCompletedDates().get(i)));
         }
+        saveInFile();
         adapter.notifyDataSetChanged();
     }
 
@@ -89,6 +98,22 @@ public class CompletionHistory extends Activity {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             //throw new RuntimeException();
+        }
+    }
+
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(habitList, writer);
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
         }
     }
 }

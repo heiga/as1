@@ -22,7 +22,7 @@
     <string name="complete_habit">Complete Habit</string>
     <string name="completed_text">Completed:</string>
     <string name="timesText">times</string>
-    <string name="completedNum">Num</string>
+    <string name="completedNum">0</string>
     <string name="hold_to_delete">Hold to Delete</string>
 
 </resources>
