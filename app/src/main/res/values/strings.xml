@@ -23,5 +23,6 @@
     <string name="completed_text">Completed:</string>
     <string name="timesText">times</string>
     <string name="completedNum">Num</string>
+    <string name="hold_to_delete">Hold to Delete</string>
 
 </resources>

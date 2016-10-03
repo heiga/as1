@@ -12,7 +12,7 @@
 
     <application
         android:icon="@drawable/bh"
-        android:label="@string/app_name">
+        android:label="phillip2-HabitTracker">
         <activity
             android:name=".LonelyTwitterActivity"
             android:label="phillip2-HabitTracker">
@@ -27,7 +27,8 @@
         <activity android:name=".ActivityList" />
         <activity android:name=".HabitListActivity" />
         <activity android:name=".TODO_habits" />
-        <activity android:name=".EditHabit"></activity>
+        <activity android:name=".EditHabit" />
+        <activity android:name=".CompletionHistory"></activity>
     </application>
 
 </manifest>

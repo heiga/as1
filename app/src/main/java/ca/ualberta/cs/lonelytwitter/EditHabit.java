@@ -2,7 +2,6 @@ package ca.ualberta.cs.lonelytwitter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +29,8 @@ public class EditHabit extends Activity {
     private HabitList habitList = new HabitList();
     private Habit habit;
     TextView completeNumber;
+    TextView lastCompleted;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class EditHabit extends Activity {
         setContentView(R.layout.activity_edit_habit);
         loadFromFile();
         Intent intent = getIntent();
-        int position = (Integer) intent.getSerializableExtra("habitPosition");
+        position = (Integer) intent.getSerializableExtra("habitPosition");
         habit = habitList.returnHabit(position);
 
         TextView title = (TextView) findViewById(R.id.viewHabitName);
@@ -48,8 +49,15 @@ public class EditHabit extends Activity {
         date.setText(dateToString(habit.getCreationDate()));
         TextView days = (TextView) findViewById(R.id.viewHabitDays);
         days.setText(daysToString(habit.getDaysOfWeek()));
+
         completeNumber = (TextView) findViewById(R.id.completedNumber);
         completeNumber.setText(String.valueOf(habit.getHabitCount()));
+
+        lastCompleted = (TextView) findViewById(R.id.lastCompletionDate);
+
+        if(!habit.getCompletedDates().isEmpty()){
+            printChanges();
+        }
 
         Button deleteHabitButton = (Button) findViewById(R.id.deleteHabitButton);
         deleteHabitButton.setOnClickListener(new View.OnClickListener() {
@@ -67,16 +75,29 @@ public class EditHabit extends Activity {
                 habit.habitCompletion(completionDate);
                 saveInFile();
                 completeNumber.setText(String.valueOf(habit.getHabitCount()));
+                printChanges();
+            }
+        });
+
+        Button completionHistoryButton = (Button) findViewById(R.id.viewCompletionButton);
+        completionHistoryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CompletionHistory.class);
+                intent.putExtra("habitPosition", position);
+                startActivity(intent);
             }
         });
     }
 
-    public void deleteHabit(View view) {
-        //habitList.deleteHabit(habit);
-        //saveInFile();
-        finish();
+    @Override
+    protected void onResume(){
+        super.onResume();
+        printChanges();
     }
-
+    private void printChanges() {
+        int index = habit.getCompletedDates().size() - 1;
+        lastCompleted.setText(dateToString(habit.getCompletedDates().get(index)));
+    }
     private String dateToString(Date date){
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         return df.format(date);
@@ -108,12 +129,10 @@ public class EditHabit extends Activity {
             // TODO Auto-generated catch block
             //throw new RuntimeException();
         }
-
     }
 
     private void saveInFile() {
         try {
-
             FileOutputStream fos = openFileOutput(FILENAME, 0);
             OutputStreamWriter writer = new OutputStreamWriter(fos);
             Gson gson = new Gson();
