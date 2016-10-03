@@ -25,14 +25,13 @@ public class HabitListActivity extends Activity {
 
     private static final String FILENAME = "file.sav";
     private HabitList habitList = new HabitList();
-    private ArrayList<Habit> habitArray = new ArrayList<Habit>();
-    private ArrayAdapter<Habit> adapter;
+    private ArrayList<String> habitArray = new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
-
 
     }
 
@@ -40,10 +39,14 @@ public class HabitListActivity extends Activity {
     protected void onStart() {
         super.onStart();
         loadFromFile();
+        getList();
+    }
+
+    private void getList() {
         for(int i = 0; i < habitList.getHabitListCount(); i++){
-            habitArray.add(habitList.returnHabit(i));
+            habitArray.add(habitList.returnHabit(i).getName());
         }
-        adapter = new ArrayAdapter<Habit>(this, R.layout.activity_habit_list, habitArray);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item, habitArray);
 
         ListView listView = (ListView) findViewById(R.id.habitListView);
         listView.setAdapter(adapter);

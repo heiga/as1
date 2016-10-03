@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
-public class TODO_habits extends HabitListActivity {
+public class TODO_habits extends Activity {
 
     // This is supposed to be the same as HabitListActivity except it only displays
     // habits to do today
