@@ -53,7 +53,8 @@ public class AddHabit extends Activity {
     private Date habitDate;
 
 
-
+    // toggle button code from
+    // http://www.android-examples.com/how-to-check-toggle-button-is-on-or-off-in-android/
     private ToggleButton Mon;
     private ToggleButton Tue;
     private ToggleButton Wed;
@@ -203,7 +204,6 @@ public class AddHabit extends Activity {
         if(Mon.isChecked()){
             daysOfWeek.add("M");
         }
-
         if(Tue.isChecked()){
             daysOfWeek.add("T");
         }

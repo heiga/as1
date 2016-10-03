@@ -63,6 +63,11 @@ public class LonelyTwitterActivity extends Activity {
 		startActivity(intent);
 	}
 
+	public void todoToday(View view) {
+		Intent intent = new Intent(this, TODO_habits.class);
+		startActivity(intent);
+	}
+
 		/*
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);

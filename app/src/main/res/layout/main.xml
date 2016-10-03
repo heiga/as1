@@ -24,7 +24,8 @@
             android:id="@+id/TODObutton"
             android:layout_above="@+id/AllHabitsbutton"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="60dp" />
+            android:layout_marginBottom="60dp"
+            android:onClick="todoToday"/>
 
         <Button
             android:layout_width="@android:dimen/thumbnail_width"
