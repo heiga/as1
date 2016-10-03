@@ -108,7 +108,6 @@ public class AddHabit extends Activity {
                 finish();
             }
         });
-
     }
 
     @Override
@@ -164,7 +163,6 @@ public class AddHabit extends Activity {
             // TODO Auto-generated catch block
             //throw new RuntimeException();
         }
-
     }
 
     private void saveInFile() {
