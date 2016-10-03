@@ -62,6 +62,7 @@ public class HabitListActivity extends Activity {
 
                 Intent intent = new Intent(getApplicationContext(), EditHabit.class);
                 intent.putExtra("habitPosition", position);
+                startActivity(intent);
             }
         });
     }
