@@ -33,17 +33,30 @@ public class HabitListActivity extends Activity {
     private ArrayAdapter<String> adapter;
 
     private ArrayList<Habit> habitCollection = new ArrayList<Habit>();
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
+        listView = (ListView) findViewById(R.id.habitListView);
     }
 
+    /*
     @Override
     protected void onStart() {
         super.onStart();
         habitList = new HabitList();
+        loadFromFile();
+        getList();
+    }
+    */
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        habitList = new HabitList();
+        habitArray.clear();
         loadFromFile();
         getList();
     }
@@ -54,7 +67,7 @@ public class HabitListActivity extends Activity {
             habitCollection.add(habitList.returnHabit(i));
         }
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, habitArray);
-        ListView listView = (ListView) findViewById(R.id.habitListView);
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,7 +78,6 @@ public class HabitListActivity extends Activity {
             }
         });
     }
-
 
     private void loadFromFile() {
         try {
@@ -84,7 +96,6 @@ public class HabitListActivity extends Activity {
             // TODO Auto-generated catch block
             //throw new RuntimeException();
         }
-
     }
 
     private void saveInFile() {

@@ -20,5 +20,8 @@
     <string name="last_completion_date">never</string>
     <string name="view_completion_history">View Completion History</string>
     <string name="complete_habit">Complete Habit</string>
+    <string name="completed_text">Completed:</string>
+    <string name="timesText">times</string>
+    <string name="completedNum">Num</string>
 
 </resources>

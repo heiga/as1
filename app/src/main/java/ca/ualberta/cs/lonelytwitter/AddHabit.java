@@ -123,6 +123,7 @@ public class AddHabit extends Activity {
                 finish();
             }
         });
+
     }
 
     @Override

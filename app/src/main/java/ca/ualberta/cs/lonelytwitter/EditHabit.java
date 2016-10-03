@@ -29,6 +29,7 @@ public class EditHabit extends Activity {
     private static final String FILENAME = "file.sav";
     private HabitList habitList = new HabitList();
     private Habit habit;
+    TextView completeNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class EditHabit extends Activity {
         date.setText(dateToString(habit.getCreationDate()));
         TextView days = (TextView) findViewById(R.id.viewHabitDays);
         days.setText(daysToString(habit.getDaysOfWeek()));
+        completeNumber = (TextView) findViewById(R.id.completedNumber);
+        completeNumber.setText(String.valueOf(habit.getHabitCount()));
 
         Button deleteHabitButton = (Button) findViewById(R.id.deleteHabitButton);
         deleteHabitButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +57,16 @@ public class EditHabit extends Activity {
                 habitList.deleteHabit(habit);
                 saveInFile();
                 finish();
+            }
+        });
+
+        Button completeHabitButton = (Button) findViewById(R.id.completeHabitButton);
+        completeHabitButton.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                Date completionDate = new Date();
+                habit.habitCompletion(completionDate);
+                saveInFile();
+                completeNumber.setText(String.valueOf(habit.getHabitCount()));
             }
         });
     }

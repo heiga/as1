@@ -89,4 +89,31 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:textColor="@android:color/holo_green_light" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/completed_text"
+        android:id="@+id/completedText"
+        android:layout_below="@+id/lastCompletionDate"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/completedNum"
+        android:id="@+id/completedNumber"
+        android:layout_below="@+id/completedText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/timesText"
+        android:id="@+id/timesText"
+        android:layout_below="@+id/completedNumber"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
