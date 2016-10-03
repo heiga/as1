@@ -3,6 +3,8 @@ package ca.ualberta.cs.lonelytwitter;
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,19 +17,37 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import ca.ualberta.cs.lonelytwitter.HabitList;
 
 public class HabitListActivity extends Activity {
 
     private static final String FILENAME = "file.sav";
     private HabitList habitList = new HabitList();
+    private ArrayList<Habit> habitArray = new ArrayList<Habit>();
+    private ArrayAdapter<Habit> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
+
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadFromFile();
+        for(int i = 0; i < habitList.getHabitListCount(); i++){
+            habitArray.add(habitList.returnHabit(i));
+        }
+        adapter = new ArrayAdapter<Habit>(this, R.layout.activity_habit_list, habitArray);
 
+        ListView listView = (ListView) findViewById(R.id.habitListView);
+        listView.setAdapter(adapter);
+    }
 
 
 
