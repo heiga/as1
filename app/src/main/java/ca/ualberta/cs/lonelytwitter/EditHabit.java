@@ -71,7 +71,7 @@ public class EditHabit extends Activity {
                 Date completionDate = new Date();
                 habit.habitCompletion(completionDate);
                 saveInFile();
-                completeNumber.setText(String.valueOf(habit.getHabitCount()));
+                //completeNumber.setText(String.valueOf(habit.getHabitCount()));
                 printChanges();
             }
         });

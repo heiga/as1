@@ -56,12 +56,13 @@ public class HabitListActivity extends Activity {
     protected void onResume() {
         super.onResume();
         habitList = new HabitList();
-        habitArray.clear();
+        //habitArray.clear();
         loadFromFile();
         getList();
     }
 
     private void getList() {
+        habitArray.clear();
         for(int i = 0; i < habitList.getHabitListCount(); i++){
             habitArray.add(habitList.returnHabit(i).getName());
             habitCollection.add(habitList.returnHabit(i));

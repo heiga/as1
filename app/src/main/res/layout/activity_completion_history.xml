@@ -23,5 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/completionListView"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:divider="@android:color/holo_blue_bright"
+        android:dividerHeight="1dp" />
 </RelativeLayout>
