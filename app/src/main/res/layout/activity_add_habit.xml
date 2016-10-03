@@ -169,7 +169,7 @@
 
     <Button
         android:layout_width="@android:dimen/thumbnail_width"
-        android:layout_height="@android:dimen/thumbnail_height"
+        android:layout_height="@dimen/abc_search_view_text_min_width"
         android:text="@string/add_habit"
         android:id="@+id/addHabitButton"
         android:layout_alignParentBottom="true"

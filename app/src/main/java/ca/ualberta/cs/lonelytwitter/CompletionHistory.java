@@ -1,12 +1,14 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ import java.util.Date;
 public class CompletionHistory extends Activity {
 
     private static final String FILENAME = "file.sav";
-    private int position;
+    private int positionHabit;
     private Habit habit;
     private HabitList habitList;
     private ArrayAdapter<String> adapter;
@@ -40,19 +43,24 @@ public class CompletionHistory extends Activity {
         setContentView(R.layout.activity_completion_history);
 
         dateArray = new ArrayList<String>();
+
         listView = (ListView) findViewById(R.id.completionListView);
-        loadFromFile();
+
         Intent intent = getIntent();
-        position = (Integer) intent.getSerializableExtra("habitPosition");
-        habit = habitList.returnHabit(position);
+        positionHabit = (Integer) intent.getSerializableExtra("habitPosition");
+        loadFromFile();
+        habit = habitList.returnHabit(positionHabit);
 
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, dateArray);
         listView.setAdapter(adapter);
+
         update();
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                setResult(RESULT_OK);
+                habit = habitList.returnHabit(positionHabit);
                 habit.getCompletedDates().remove(position);
                 update();
                 adapter.notifyDataSetChanged();
@@ -61,20 +69,21 @@ public class CompletionHistory extends Activity {
         });
     }
 
-    /*
     public void onResume() {
         super.onResume();
         loadFromFile();
         update();
-    } */
+    }
 
     private void update() {
+        habit = habitList.returnHabit(positionHabit);
         dateArray.clear();
         for(int i = 0; i < habit.getCompletedDates().size(); i++) {
             dateArray.add(dateToString(habit.getCompletedDates().get(i)));
         }
         saveInFile();
         adapter.notifyDataSetChanged();
+
     }
 
     private String dateToString(Date date){

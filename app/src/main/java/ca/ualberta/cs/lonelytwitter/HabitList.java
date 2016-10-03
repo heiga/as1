@@ -28,6 +28,10 @@ public class HabitList {
         habitList.remove(habitToDelete);
     }
 
+    public void deleteHabit(int index) {
+        habitList.remove(index);
+    }
+
     public int getHabitListCount() {
         return habitList.size();
     }

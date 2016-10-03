@@ -37,6 +37,7 @@ public class EditHabit extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_habit);
         loadFromFile();
+
         Intent intent = getIntent();
         position = (Integer) intent.getSerializableExtra("habitPosition");
         habit = habitList.returnHabit(position);
@@ -51,7 +52,6 @@ public class EditHabit extends Activity {
         days.setText(daysToString(habit.getDaysOfWeek()));
 
         completeNumber = (TextView) findViewById(R.id.completedNumber);
-
         lastCompleted = (TextView) findViewById(R.id.lastCompletionDate);
 
         printChanges();
@@ -59,7 +59,8 @@ public class EditHabit extends Activity {
         Button deleteHabitButton = (Button) findViewById(R.id.deleteHabitButton);
         deleteHabitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                habitList.deleteHabit(habit);
+                setResult(RESULT_OK);
+                habitList.deleteHabit(position);
                 saveInFile();
                 finish();
             }
@@ -68,10 +69,10 @@ public class EditHabit extends Activity {
         Button completeHabitButton = (Button) findViewById(R.id.completeHabitButton);
         completeHabitButton.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
+                setResult(RESULT_OK);
                 Date completionDate = new Date();
-                habit.habitCompletion(completionDate);
+                habitList.returnHabit(position).habitCompletion(completionDate);
                 saveInFile();
-                //completeNumber.setText(String.valueOf(habit.getHabitCount()));
                 printChanges();
             }
         });
@@ -79,6 +80,7 @@ public class EditHabit extends Activity {
         Button completionHistoryButton = (Button) findViewById(R.id.viewCompletionButton);
         completionHistoryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                setResult(RESULT_OK);
                 Intent intent = new Intent(getApplicationContext(), CompletionHistory.class);
                 intent.putExtra("habitPosition", position);
                 startActivity(intent);
@@ -94,10 +96,15 @@ public class EditHabit extends Activity {
     }
 
     private void printChanges() {
+        habit = habitList.returnHabit(position);
         if(habit.getCompletedDates().size() > 0) {
             int index = habit.getCompletedDates().size() - 1;
             lastCompleted.setText(dateToString(habit.getCompletedDates().get(index)));
             completeNumber.setText(String.valueOf(habit.getHabitCount()));
+        }
+        else {
+            lastCompleted.setText("never");
+            completeNumber.setText("0");
         }
     }
     private String dateToString(Date date){
