@@ -101,7 +101,7 @@
         android:layout_width="47dp"
         android:layout_height="wrap_content"
         android:text="New ToggleButton"
-        android:id="@+id/toggleButton"
+        android:id="@+id/toggleButton1"
         android:layout_below="@+id/daysOfWeekTitle"
         android:layout_alignParentStart="true"
         android:textOff="M"
@@ -112,8 +112,8 @@
         android:layout_height="wrap_content"
         android:text="New ToggleButton"
         android:id="@+id/toggleButton2"
-        android:layout_alignTop="@+id/toggleButton"
-        android:layout_toEndOf="@+id/toggleButton"
+        android:layout_alignTop="@+id/toggleButton1"
+        android:layout_toEndOf="@+id/toggleButton1"
         android:textOff="T"
         android:textOn="T"/>
 

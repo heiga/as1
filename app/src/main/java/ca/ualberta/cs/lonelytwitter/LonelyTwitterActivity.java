@@ -27,8 +27,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class LonelyTwitterActivity extends Activity {
 
-	/*
+
 	private static final String FILENAME = "file.sav";
+	/*
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
@@ -42,6 +43,12 @@ public class LonelyTwitterActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		File tryFile = new File(FILENAME);
+		try {
+			tryFile.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		setContentView(R.layout.main);
 	}
 

@@ -3,6 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.view.Menu;
 import android.os.Bundle;
 import android.view.View;
@@ -51,19 +52,40 @@ public class AddHabit extends Activity {
     private EditText habitNotes;
     private Date habitDate;
 
-    ToggleButton Mon = (ToggleButton) findViewById(R.id.toggleButton);
-    ToggleButton Tue = (ToggleButton) findViewById(R.id.toggleButton2);
-    ToggleButton Wed = (ToggleButton) findViewById(R.id.toggleButton3);
-    ToggleButton Thu = (ToggleButton) findViewById(R.id.toggleButton4);
-    ToggleButton Fri = (ToggleButton) findViewById(R.id.toggleButton5);
-    ToggleButton Sat = (ToggleButton) findViewById(R.id.toggleButton6);
-    ToggleButton Sun = (ToggleButton) findViewById(R.id.toggleButton7);
+
+
+    private ToggleButton Mon;
+    private ToggleButton Tue;
+    private ToggleButton Wed;
+    private ToggleButton Thu;
+    private ToggleButton Fri;
+    private ToggleButton Sat;
+    private ToggleButton Sun;
+    /*
+    private ToggleButton Mon = (ToggleButton) findViewById(R.id.toggleButton1);
+    private ToggleButton Tue = (ToggleButton) findViewById(R.id.toggleButton2);
+    private ToggleButton Wed = (ToggleButton) findViewById(R.id.toggleButton3);
+    private ToggleButton Thu = (ToggleButton) findViewById(R.id.toggleButton4);
+    private ToggleButton Fri = (ToggleButton) findViewById(R.id.toggleButton5);
+    private ToggleButton Sat = (ToggleButton) findViewById(R.id.toggleButton6);
+    private ToggleButton Sun = (ToggleButton) findViewById(R.id.toggleButton7);
+    */
+
     private ArrayList<String> daysOfWeek;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_habit);
+
+        Mon = (ToggleButton) findViewById(R.id.toggleButton1);
+        Tue = (ToggleButton) findViewById(R.id.toggleButton2);
+        Wed = (ToggleButton) findViewById(R.id.toggleButton3);
+        Thu = (ToggleButton) findViewById(R.id.toggleButton4);
+        Fri = (ToggleButton) findViewById(R.id.toggleButton5);
+        Sat = (ToggleButton) findViewById(R.id.toggleButton6);
+        Sun = (ToggleButton) findViewById(R.id.toggleButton7);
 
         dateView = (TextView) findViewById(R.id.dateDisplay);
         calendar = Calendar.getInstance();
@@ -79,6 +101,7 @@ public class AddHabit extends Activity {
         addHabitButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                loadFromFile();
                 setResult(RESULT_OK);
                 /*
                 String text = bodyText.getText().toString();
@@ -88,8 +111,16 @@ public class AddHabit extends Activity {
                 */
                 habitDate = calendar.getTime();
                 daysOfWeek = getDaysOfWeek();
+                habitList.addHabit(habitName.toString(), habitNotes.toString(),
+                        habitDate, daysOfWeek);
+
+                Context context = getApplicationContext();
+                CharSequence text = habitList.returnHabit(1);
+                Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+                toast.show();
 
                 saveInFile();
+                finish();
             }
         });
     }
@@ -98,7 +129,6 @@ public class AddHabit extends Activity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        loadFromFile();
     }
 
     @SuppressWarnings("deprecation")
@@ -131,10 +161,6 @@ public class AddHabit extends Activity {
                 .append(month).append("/").append(year));
     }
 
-    public void addHabit() {
-
-    }
-
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -147,10 +173,10 @@ public class AddHabit extends Activity {
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            throw new RuntimeException();
+            //throw new RuntimeException();
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            throw new RuntimeException();
+            //throw new RuntimeException();
         }
 
     }
@@ -177,6 +203,7 @@ public class AddHabit extends Activity {
         if(Mon.isChecked()){
             daysOfWeek.add("M");
         }
+
         if(Tue.isChecked()){
             daysOfWeek.add("T");
         }
